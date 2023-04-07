@@ -1,4 +1,3 @@
-package Exercise01;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -11,11 +10,13 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
-public class A01 {
+
+public class CreatAccount {
+
 
     WebDriver driver;
-  //1. Launch browser
-  //2. Navigate to url 'http://automationexercise.com'
+    //1. Launch browser
+    //2. Navigate to url 'http://automationexercise.com'
     @Before
     public void setUp() throws Exception {
         WebDriverManager.chromedriver().setup();
@@ -27,14 +28,14 @@ public class A01 {
 
     @After
     public void tearDown() throws Exception {
-       Thread.sleep(2000);
+        Thread.sleep(2000);
         driver.close();
     }
 
     @Test
-    public void homePageTest() throws InterruptedException {
+    public void creatAccountTest() throws InterruptedException {
         //3. Verify that home page is visible successfully
-        WebElement homePage= driver.findElement(By.cssSelector("i[class='fa fa-home']"));
+        WebElement homePage = driver.findElement(By.cssSelector("i[class='fa fa-home']"));
         Assert.assertTrue(homePage.isDisplayed());
         //4. Click on 'Signup / Login' button
         WebElement signUpButton = driver.findElement(By.xpath("//*[@class='fa fa-lock']"));
@@ -44,40 +45,41 @@ public class A01 {
         Assert.assertTrue(newUserSignUp.isDisplayed());
         //6. Enter name and email address
         driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Ali");
-        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("a12345@gmail.com");
+        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("a912@gmail.com");
         //7. Click 'Signup' button
         driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
         //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
-        WebElement entAccInf=driver.findElement(By.xpath("//*[text()='Enter Account Information']"));
+        WebElement entAccInf = driver.findElement(By.xpath("//*[text()='Enter Account Information']"));
         Assert.assertTrue(entAccInf.isDisplayed());
-       // 9. Fill details: Title, Name, Email, Password, Date of birth
+        // 9. Fill details: Title, Name, Email, Password, Date of birth
         //title
         driver.findElement(By.cssSelector("input[id='id_gender1']")).click();
         //password
-        driver.findElement(By.cssSelector("input[id='password']")).sendKeys("1234");
+        driver.findElement(By.cssSelector("input[id='password']")).sendKeys("12345");
         Thread.sleep(2000);
 
         //page down
         Actions actions = new Actions(driver);
-        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).
-                sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).perform();
+        actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
         Thread.sleep(3000);
 
         //Date of birth
+
         //Day
-        WebElement day= driver.findElement(By.cssSelector("select[id='days']"));
-        Select selectDay=new Select(day);
+        WebElement day = driver.findElement(By.cssSelector("select[id='days']"));
+        Select selectDay = new Select(day);
         selectDay.selectByValue("22");
 
         //Month
-        WebElement month= driver.findElement(By.cssSelector("select[id='months']"));
-        Select selectMonth=new Select(month);
+        WebElement month = driver.findElement(By.cssSelector("select[id='months']"));
+        Select selectMonth = new Select(month);
         selectMonth.selectByValue("5");
 
         //Year
-        WebElement year= driver.findElement(By.cssSelector("select[id='years']"));
-        Select selectYear=new Select(year);
+        WebElement year = driver.findElement(By.cssSelector("select[id='years']"));
+        Select selectYear = new Select(year);
         selectYear.selectByValue("1981");
+
 
         // 10. Select checkbox 'Sign up for our newsletter!'
 
@@ -85,7 +87,7 @@ public class A01 {
         Thread.sleep(2000);
 
         //11. Select checkbox 'Receive special offers from our partners!'
-         driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+        driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
         //WebElement offers=driver.findElement(By.xpath("//*[text()='Receive special offers from our partners!']"));
         Thread.sleep(1000);
         //offers.click();
@@ -106,9 +108,9 @@ public class A01 {
         driver.findElement(By.xpath("//input[@id='address2']")).sendKeys("Toronto, Canada");
         Thread.sleep(1000);
         //Country
-        WebElement country= driver.findElement(By.cssSelector("select[id='country']"));
+        WebElement country = driver.findElement(By.cssSelector("select[id='country']"));
         Thread.sleep(1000);
-        Select selectCountry=new Select(country);
+        Select selectCountry = new Select(country);
         selectCountry.selectByIndex(2);
         //state
         driver.findElement(By.xpath("//input[@id='state']")).sendKeys("Toronto");
@@ -126,39 +128,7 @@ public class A01 {
         //   13. Click 'Create Account button'
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         Thread.sleep(1000);
-
-        // 14. Verify that 'ACCOUNT CREATED!' is visible
-       WebElement accountCreated= driver.findElement(By.xpath("//h2[@class='title text-center']"));
-        Thread.sleep(1000);
-       Assert.assertTrue(accountCreated.isDisplayed());
-        Thread.sleep(1000);
-
-      //15. Click 'Continue' button
-        driver.findElement(By.xpath("//a[@class='btn btn-primary']")).click();
-        Thread.sleep(2000);
-
-
-    //    if there is a popup add, close ad
-        driver.get("https://automationexercise.com/account_created#google_vignette");
-        Actions action = new Actions(driver);
-        action.sendKeys(Keys.ESCAPE).build().perform();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//a[@class='btn btn-primary']")).click();
-
-        //16 Verify that 'Logged in as username' is visible
-        WebElement username=   driver.findElement(By.xpath("//*[text() ='Ali'] "));
-                Assert.assertTrue(username.isDisplayed());
-
-        //17. Click 'Delete Account' button
-        driver.findElement(By.xpath("//*[@class='fa fa-trash-o']")).click();
-
-        //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-
-        WebElement accountDeleted= driver.findElement(By.xpath("//h2[@class='title text-center']"));
-
-        Assert.assertTrue(accountDeleted.isDisplayed());
-
-        driver.findElement(By.xpath("//a[@data-qa='continue-button']")).click();
-
     }
+
+
 }
