@@ -32,7 +32,7 @@ public class A01 {
     }
 
     @Test
-    public void homePageTest() throws InterruptedException {
+    public void homePageTest01() throws InterruptedException {
         //3. Verify that home page is visible successfully
         WebElement homePage= driver.findElement(By.cssSelector("i[class='fa fa-home']"));
         Assert.assertTrue(homePage.isDisplayed());

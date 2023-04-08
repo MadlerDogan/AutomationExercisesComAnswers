@@ -32,7 +32,7 @@ public class A02 {
 
 
     @Test
-    public void test() throws InterruptedException {
+    public void test02() throws InterruptedException {
         //    2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         //3. Verify that home page is visible successfully
