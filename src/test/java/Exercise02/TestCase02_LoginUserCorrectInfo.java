@@ -11,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
-public class A02 {
+public class TestCase02_LoginUserCorrectInfo {
 
     WebDriver driver;
 

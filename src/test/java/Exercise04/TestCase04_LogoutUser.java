@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class A04 {
+public class TestCase04_LogoutUser {
     WebDriver driver;
 
     //1. Launch browser

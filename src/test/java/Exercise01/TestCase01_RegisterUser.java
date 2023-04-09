@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
-public class A01 {
+public class TestCase01_RegisterUser {
 
     WebDriver driver;
   //1. Launch browser

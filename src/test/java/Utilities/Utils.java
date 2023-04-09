@@ -1,20 +1,21 @@
+package Utilities;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Utils {
 
-public class CreatAccount {
+   static public WebDriver driver;
 
-
-    WebDriver driver;
     //1. Launch browser
     //2. Navigate to url 'http://automationexercise.com'
     @Before
@@ -23,112 +24,125 @@ public class CreatAccount {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("http://automationexercise.com");
+
     }
 
     @After
-    public void tearDown() throws Exception {
-        Thread.sleep(2000);
-        driver.close();
+    public void tearDown() {
+    wait(3);
+
+             driver.close();
     }
 
+    public static void wait(int seconds)  {
 
-    public void creatAccountTest() throws InterruptedException {
-        //3. Verify that home page is visible successfully
-        WebElement homePage = driver.findElement(By.cssSelector("i[class='fa fa-home']"));
-        Assert.assertTrue(homePage.isDisplayed());
-        //4. Click on 'Signup / Login' button
+        try {
+            Thread.sleep(1000 *seconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void creatAccount() {
+        //open new window
+        driver.switchTo().newWindow(WindowType.WINDOW);
+        // 2. Navigate to url 'http://automationexercise.com'
+        driver.get("http://automationexercise.com");
+        wait(3);
+        //Click on 'Signup / Login' button
         WebElement signUpButton = driver.findElement(By.xpath("//*[@class='fa fa-lock']"));
         signUpButton.click();
-        //5. Verify 'New User Signup!' is visible
-        WebElement newUserSignUp = driver.findElement(By.xpath("//h2[text()='New User Signup!']"));
-        Assert.assertTrue(newUserSignUp.isDisplayed());
-        //6. Enter name and email address
-        driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Ali");
-        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("a912@gmail.com");
-        //7. Click 'Signup' button
+        //Enter name and email address
+        driver.findElement(By.xpath("//input[@type='text']")).sendKeys("John");
+        driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("jd912@gmail.com");
+        //Click 'Signup' button
         driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
-        //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
-        WebElement entAccInf = driver.findElement(By.xpath("//*[text()='Enter Account Information']"));
-        Assert.assertTrue(entAccInf.isDisplayed());
-        // 9. Fill details: Title, Name, Email, Password, Date of birth
+        //Fill details: Title, Name, Email, Password, Date of birth
         //title
         driver.findElement(By.cssSelector("input[id='id_gender1']")).click();
         //password
         driver.findElement(By.cssSelector("input[id='password']")).sendKeys("12345");
-        Thread.sleep(2000);
-
+        wait(2);
         //page down
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
-        Thread.sleep(3000);
-
+        wait(3);;
         //Date of birth
-
         //Day
         WebElement day = driver.findElement(By.cssSelector("select[id='days']"));
         Select selectDay = new Select(day);
         selectDay.selectByValue("22");
-
         //Month
         WebElement month = driver.findElement(By.cssSelector("select[id='months']"));
         Select selectMonth = new Select(month);
         selectMonth.selectByValue("5");
-
         //Year
         WebElement year = driver.findElement(By.cssSelector("select[id='years']"));
         Select selectYear = new Select(year);
         selectYear.selectByValue("1981");
-
-
-        // 10. Select checkbox 'Sign up for our newsletter!'
-
+        // Select checkbox 'Sign up for our newsletter!'
         driver.findElement(By.xpath("//*[text()='Sign up for our newsletter!']")).click();
-        Thread.sleep(2000);
-
-        //11. Select checkbox 'Receive special offers from our partners!'
+        wait(2);;
+        //Select checkbox 'Receive special offers from our partners!'
         driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
-        //WebElement offers=driver.findElement(By.xpath("//*[text()='Receive special offers from our partners!']"));
-        Thread.sleep(1000);
+        wait(1);
         //offers.click();
-        Thread.sleep(1000);
-        //12. Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
+        wait(1);;
         //First name
-        driver.findElement(By.xpath("//input[@id='first_name']")).sendKeys("Ali");
-        Thread.sleep(1000);
+        driver.findElement(By.xpath("//input[@id='first_name']")).sendKeys("John");
+        wait(1);;
         //Last Name
-        driver.findElement(By.xpath("//input[@id='last_name']")).sendKeys("Gel");
-        Thread.sleep(1000);
+        driver.findElement(By.xpath("//input[@id='last_name']")).sendKeys("Doe");
+        wait(1);;
         //Company
         driver.findElement(By.xpath("//input[@id='company']")).sendKeys("Nex Technologie");
-        Thread.sleep(1000);
+        wait(1);;
         //Address
         driver.findElement(By.xpath("//input[@id='address1']")).sendKeys("Stein Street 77, 47799,Ottava");
-        Thread.sleep(1000);
+        wait(1);
         driver.findElement(By.xpath("//input[@id='address2']")).sendKeys("Toronto, Canada");
-        Thread.sleep(1000);
+        wait(1);
         //Country
         WebElement country = driver.findElement(By.cssSelector("select[id='country']"));
-        Thread.sleep(1000);
+        wait(1);
         Select selectCountry = new Select(country);
         selectCountry.selectByIndex(2);
         //state
         driver.findElement(By.xpath("//input[@id='state']")).sendKeys("Toronto");
-        Thread.sleep(1000);
+        wait(1);
         //City
         driver.findElement(By.cssSelector("input[id='city']")).sendKeys("Toronto");
-        Thread.sleep(1000);
+        wait(1);
         //Zipcode
         driver.findElement(By.cssSelector("input[id='zipcode']")).sendKeys("1457");
-        Thread.sleep(1000);
+        wait(1);
         //Mobile number
         driver.findElement(By.cssSelector("input[id='mobile_number']")).sendKeys("14572124");
-        Thread.sleep(1000);
-
-        //   13. Click 'Create Account button'
+        wait(1);
+        //Click 'Create Account button'
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(1000);
+        wait(1);
+
+        List<String> tumWindowList = new ArrayList<String>(driver.getWindowHandles());
+        //Bütün açtığım pencerelerin handle değerlerini bir ArrayList'e atadık
+
+        //techproeducation sayfasına geçiniz:
+        wait(3);
+        //driver.switchTo().window(techproWindowHandle);
+        driver.switchTo().window(tumWindowList.get(0));// ilk açtığımız pencereye index ile geçebiliriz
     }
 
+
+    public static void deleteAdd(){
+
+        //    if there is a popup add, close ad
+        driver.get("https://automationexercise.com/delete_account#google_vignette");
+        Actions action = new Actions(driver);
+        action.sendKeys(Keys.ESCAPE).build().perform();
+        wait(2);
+
+
+    }
 
 }
