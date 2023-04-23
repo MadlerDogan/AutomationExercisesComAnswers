@@ -38,7 +38,7 @@ public class TestCase06_ContactUsForm extends Utils {
         driver.get("http://automationexercise.com");
         String mainWindowHandle = driver.getWindowHandle();
 //        3. Verify that home page is visible successfully
-        WebElement mainPage= driver.findElement(By.xpath("//a[@style='color: orange;']"));
+        WebElement mainPage = driver.findElement(By.xpath("//a[@style='color: orange;']"));
         Assert.assertTrue(mainPage.isDisplayed());
 
 //        4. Click on 'Contact Us' button
@@ -62,25 +62,24 @@ public class TestCase06_ContactUsForm extends Utils {
         driver.findElement(By.xpath("//textarea[@placeholder='Your Message Here']")).sendKeys("Thanks for a good designed internet site");
 
 
-
 //        7. Upload file
 
-        WebElement buton = driver.findElement(By.xpath("(//*[@class='form-group col-md-12'])[3]"));
-        buton.click();
-      //  buton.sendKeys("C:\\Users\\dogan\\Desktop\\SeleniumTest.txt");
+//        WebElement buton = driver.findElement(By.xpath("(//*[@class='form-group col-md-12'])[3]"));
+//        buton.click();
+        //  buton.sendKeys("C:\\Users\\dogan\\Desktop\\SeleniumTest.txt");
 
-        WebElement upload= driver.findElement(By.xpath("//input[@name='upload_file']"));
+        WebElement upload = driver.findElement(By.xpath("//input[@name='upload_file']"));
         upload.sendKeys("C:\\Users\\dogan\\Desktop\\SeleniumTest.txt");
         wait(2);
-  //        8. Click 'Submit' button
-     driver.findElement(By.xpath("//input[@type='submit']")).click();
+        //        8. Click 'Submit' button
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
 
-     wait(3);
+        wait(3);
 //        9. Click OK button
         driver.switchTo().alert().accept();
 //        10. Verify success message 'Success! Your details have been submitted successfully.' is visible
-       WebElement messageVerify= driver.findElement(By.xpath("//div[@class='status alert alert-success']"));
-       Assert.assertTrue(messageVerify.isDisplayed());
+        WebElement messageVerify = driver.findElement(By.xpath("//div[@class='status alert alert-success']"));
+        Assert.assertTrue(messageVerify.isDisplayed());
 
         //    if there is a popup add, close ad
         driver.get("https://automationexercise.com/contact_us#google_vignette");
@@ -90,10 +89,8 @@ public class TestCase06_ContactUsForm extends Utils {
 //        11. Click 'Home' button and verify that landed to home page successfully
         driver.findElement(By.xpath("//i[@class='fa fa-home']")).click();
 
-        WebElement mainPage2= driver.findElement(By.xpath("//a[@style='color: orange;']"));
+        WebElement mainPage2 = driver.findElement(By.xpath("//a[@style='color: orange;']"));
         Assert.assertTrue(mainPage2.isDisplayed());
-
-
 
     }
 }

@@ -77,7 +77,7 @@ public class TestCase02_LoginUserCorrectInfo {
         Assert.assertTrue(deletedTex.isDisplayed());
 
 
-        //div[@id='dismiss-button']
+
     }
 
 
