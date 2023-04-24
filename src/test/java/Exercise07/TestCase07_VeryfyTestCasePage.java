@@ -20,17 +20,20 @@ public class TestCase07_VeryfyTestCasePage extends TestBase {
 
     @Test
     public void test01() {
+        extentTest=extentReports.createTest("ExtentTest","Test Raporu");
         //1. Launch browser
         //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
+        extentTest.info("Navigate to url:automationexercise.com");
         //3. Verify that home page is visible successfully
         WebElement mainPage= driver.findElement(By.xpath("//*[@style='color: orange;']"));
         Assert.assertTrue(mainPage.isDisplayed());
-
+        extentTest.pass("Make assertion");
+        extentTest.info("Close page");
     }
 
     @Test
-    public void name() {
+    public void test02() {
         extentTest=extentReports.createTest("ExtentTest","Test Raporu");
 
         driver.get("http://automationexercise.com");
@@ -50,7 +53,6 @@ public class TestCase07_VeryfyTestCasePage extends TestBase {
         WebElement testCasePage=  driver.findElement(By.xpath("//h5"));
         Assert.assertTrue(testCasePage.isDisplayed());
         extentTest.pass("Make assertion");
-
         extentTest.info("Close page");
 
     }
