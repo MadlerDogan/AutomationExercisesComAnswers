@@ -43,17 +43,17 @@ public abstract class TestBase {
         extentReports.attachReporter(extentHtmlReporter);
         //Raporda gözükmesini istediğimiz bilgiler için
         extentReports.setSystemInfo("Browser","Chrome");
-        extentReports.setSystemInfo("Teste","Mustafa Dogan");
+        extentReports.setSystemInfo("Tester","Mustafa Dogan");
         extentHtmlReporter.config().setDocumentTitle("Extent Report");
-        extentHtmlReporter.config().setReportName("Smoke Test Raporu");
-        extentTest=extentReports.createTest("ExtentTest","Test Raporu");
+        extentHtmlReporter.config().setReportName("Test Report");
+        extentTest=extentReports.createTest("ExtentTest","Test Report");
     }
     @After
     public void tearDown() throws Exception {
         extentReports.flush();
         wait(3);
          driver.quit();
-    }
+   }
     //HARD WAIT METHOD
     public static void wait(int saniye){
         try {
@@ -128,8 +128,7 @@ public abstract class TestBase {
     //alert wait
     public static void alertWait(WebElement element,int sayi){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(sayi));
-        wait.until(ExpectedConditions.
-                alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
     }
 
     //screen shot methodu

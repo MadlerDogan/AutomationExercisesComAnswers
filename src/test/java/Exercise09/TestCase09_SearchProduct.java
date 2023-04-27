@@ -21,7 +21,6 @@ public class TestCase09_SearchProduct extends TestBase {
 //7. Verify 'SEARCHED PRODUCTS' is visible
 //8. Verify all the products related to search are visible
 
-
     @Test
     public void test09() {
         extentTest=extentReports.createTest("ExtentTest","Test Raporu");
@@ -73,6 +72,5 @@ public class TestCase09_SearchProduct extends TestBase {
         //relatedProducts.stream().forEach(WebElement::isDisplayed);
         extentTest.pass("Assertion: all the products related to search are visible");
         extentTest.info("Close page");
-
     }
 }
