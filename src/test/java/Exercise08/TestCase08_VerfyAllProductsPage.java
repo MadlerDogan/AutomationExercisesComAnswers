@@ -20,7 +20,6 @@ public class TestCase08_VerfyAllProductsPage extends TestBase {
 //8. User is landed to product detail page
 //9. Verify that detail detail is visible: product name, category, price, availability, condition, brand
 
-
     @Test
     public void test01() {
         extentTest=extentReports.createTest("ExtentTest","Test Raporu");
@@ -54,18 +53,17 @@ public class TestCase08_VerfyAllProductsPage extends TestBase {
         Assert.assertTrue(productPage.isDisplayed());
         extentTest.pass("Verifying product page is displayed");
 
-
         //6. The products list is visible
 
         WebElement productList= driver.findElement(By.xpath("//h2[@class='title text-center']"));
         Assert.assertTrue(productList.isDisplayed());
         extentTest.pass("Verifying productlist is displayed");
-wait(2);
+        wait(2);
         //7. Click on 'View Product' of first product
         driver.findElement(By.xpath("//i[@class='fa fa-plus-square']")).click();
         extentTest.info("Clik on first product");
 
-       //8. User is landed to product detail page
+        //8. User is landed to product detail page
         //9. Verify that detail is visible: product name, category, price, availability, condition, brand
         //product name
         WebElement productName= driver.findElement(By.xpath("//h2[text()='Blue Top']"));

@@ -169,7 +169,7 @@ public abstract class TestBase {
         extentReports.attachReporter(extentHtmlReporter);
         //Raporda gözükmesini istediğimiz bilgiler için
         extentReports.setSystemInfo("Browser","Chrome");
-        extentReports.setSystemInfo("Tester","Erol");
+        extentReports.setSystemInfo("Tester","Mustafa Dogan");
         extentHtmlReporter.config().setDocumentTitle("Extent Report");
         extentHtmlReporter.config().setReportName("Smoke Test Raporu");
     }
