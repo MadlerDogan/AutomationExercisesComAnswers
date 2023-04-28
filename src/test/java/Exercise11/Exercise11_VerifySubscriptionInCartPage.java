@@ -29,7 +29,6 @@ public class Exercise11_VerifySubscriptionInCartPage extends TestBase {
 //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
         extentTest.info("Navigate to url:automationexercise.com");
-
 //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.xpath("//*[@style='color: orange;']"));
         Assert.assertTrue(homePage.isDisplayed());
@@ -41,17 +40,14 @@ public class Exercise11_VerifySubscriptionInCartPage extends TestBase {
         Actions action = new Actions(driver);
         action.sendKeys(Keys.END);
         extentTest.info("Scroll down to footer");
-
 //6. Verify text 'SUBSCRIPTION'
         WebElement subscription = driver.findElement(By.xpath("//h2[text()='Subscription']"));
         Assert.assertTrue(subscription.isDisplayed());
         wait(1);
         extentTest.pass("Assertion: Verify text 'SUBSCRIPTION'");
-
 //7. Enter email address in input and click arrow button
         Faker fake = new Faker();
         String email = fake.internet().emailAddress();
-
         WebElement eMailbox = driver.findElement(By.xpath("//input[@id='susbscribe_email']"));
         eMailbox.sendKeys(email);
         wait(1);

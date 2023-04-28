@@ -46,7 +46,6 @@ public abstract class TestBase {
         extentReports.setSystemInfo("Tester","Mustafa Dogan");
         extentHtmlReporter.config().setDocumentTitle("Extent Report");
         extentHtmlReporter.config().setReportName("Test Report");
-        extentTest=extentReports.createTest("ExtentTest","Test Report");
     }
     @After
     public void tearDown() throws Exception {

@@ -31,9 +31,7 @@ public class CreatAccount {
         Thread.sleep(2000);
         driver.close();
     }
-
-
-    public void creatAccountTest() throws InterruptedException {
+        public void creatAccountTest() throws InterruptedException {
         //3. Verify that home page is visible successfully
         WebElement homePage = driver.findElement(By.cssSelector("i[class='fa fa-home']"));
         Assert.assertTrue(homePage.isDisplayed());
