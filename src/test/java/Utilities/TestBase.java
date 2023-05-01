@@ -49,9 +49,9 @@ public abstract class TestBase {
     }
     @After
     public void tearDown() throws Exception {
-        extentReports.flush();
-        wait(3);
-         driver.quit();
+//        extentReports.flush();
+//        wait(3);
+//         driver.quit();
    }
     //HARD WAIT METHOD
     public static void wait(int saniye){

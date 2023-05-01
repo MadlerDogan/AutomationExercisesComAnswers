@@ -78,7 +78,6 @@ public class CreatAccount {
         Select selectYear = new Select(year);
         selectYear.selectByValue("1981");
 
-
         // 10. Select checkbox 'Sign up for our newsletter!'
 
         driver.findElement(By.xpath("//*[text()='Sign up for our newsletter!']")).click();
