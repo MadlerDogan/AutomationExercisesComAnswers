@@ -40,21 +40,16 @@ public class Exercise14_PlaceOrderRegisterWhileCheckout extends TestBase {
         extentTest.info("Page is downed");
         wait(1);
 
+
+
         //4. Add products to cart
-       driver.findElement(By.xpath("(//*[text()='Add to cart'])[1]")).click();
-       wait(2);
-        driver.findElement(By.xpath("//*[text()='Continue Shopping']")).click();
-        wait(2);
+        for (int i = 1; i <7 ; i+=2) {
+            driver.findElement(By.xpath("(//*[text()='Add to cart'])["+i+"]")).click();
+            wait(1);
+            driver.findElement(By.xpath("//*[text()='Continue Shopping']")).click();
+            wait(2);
+        }
 
-        driver.findElement(By.xpath("(//*[text()='Add to cart'])[3]")).click();
-        wait(2);
-        driver.findElement(By.xpath("//*[text()='Continue Shopping']")).click();
-        wait(2);
-
-        driver.findElement(By.xpath("(//*[text()='Add to cart'])[5]")).click();
-        wait(2);
-        driver.findElement(By.xpath("//*[text()='Continue Shopping']")).click();
-        wait(2);
         extentTest.info("Add products to cart");
 
         //5. Click 'Cart' button
@@ -78,7 +73,7 @@ public class Exercise14_PlaceOrderRegisterWhileCheckout extends TestBase {
 
         //9. Fill all details in Signup and create account
 
-        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Alice", Keys.TAB,"alice@gmail.com", Keys.ENTER);
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Alicem", Keys.TAB,"alicem@gmail.com", Keys.ENTER);
 
         //Fill details: Title, Name, Email, Password, Date of birth
         //title
@@ -153,24 +148,28 @@ public class Exercise14_PlaceOrderRegisterWhileCheckout extends TestBase {
         Assert.assertTrue(accountCreated.isDisplayed());
         extentTest.pass("Verify 'ACCOUNT CREATED!'");
 
-        driver.findElement(By.xpath("//*[text()='Continue']")).click();
-        extentTest.info("click 'Continue' button ");
+      driver.findElement(By.xpath("//*[text()='Continue']")).click();
+      extentTest.info("click 'Continue' button ");
 
 
-        //      if there is a popup add, close add
 
-        driver.navigate().refresh();
-//
-//        driver.get("https://automationexercise.com/account_created#google_vignette");
-//        Actions action = new Actions(driver);
-//        action.sendKeys(Keys.ESCAPE).build().perform();
-//        extentTest.info("Close popup add");
-//        wait(2);
+     //      if there is a popup add, close add
+
+      //  driver.navigate().refresh();
+
+        driver.get("https://automationexercise.com/account_created#google_vignette");
+        Actions action = new Actions(driver);
+        action.sendKeys(Keys.ESCAPE).build().perform();
+        extentTest.info("Close popup add");
+        wait(2);
+
+     driver.findElement(By.xpath("//*[text()='Continue']")).click();
+     extentTest.info("After add. click 'Continue' button ");
 
         //11. Verify ' Logged in as username' at top
         WebElement loggedText = driver.findElement(By.xpath("(//a)[11]"));
         String StrLoggedText = loggedText.getText();
-        String expectedText = "Logged in as Alice";
+        String expectedText = "Logged in as Alicem";
         Assert.assertTrue(loggedText.isDisplayed());
 
 
@@ -205,16 +204,49 @@ public class Exercise14_PlaceOrderRegisterWhileCheckout extends TestBase {
        extentTest.info("click 'Place Order'");
 
         //16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
-
-
+        //Name on Card
+        driver.findElement(By.xpath("//input[@name='name_on_card']")).sendKeys("Alice Money");
+        //Card Number
+        driver.findElement(By.xpath("//input[@name='card_number']")).sendKeys("1234 4567 6789 9123");
+        //CVC
+        driver.findElement(By.xpath("//input[@name='cvc']")).sendKeys("122");
+        //Expiration date
+        driver.findElement(By.xpath("//input[@name='expiry_month']")).sendKeys("12");
+        driver.findElement(By.xpath("//input[@name='expiry_year']")).sendKeys("2026");
+        extentTest.info("Enter payment details: Name on Card, Card Number, CVC, Expiration date");
 
         //17. Click 'Pay and Confirm Order' button
+        driver.findElement(By.id("submit")).click();
+        extentTest.info("Click 'Pay and Confirm Order' button");
+
         //18. Verify success message 'Your order has been placed successfully!'
+        wait(2);
+
+        WebElement paymentMessage = driver.findElement(By.xpath("//p[normalize-space()='Congratulations! Your order has been confirmed!']"));
+        Assert.assertTrue(paymentMessage.isDisplayed());
+        extentTest.pass("Assertion:Verify success message 'Your order has been placed successfully!'");
+
+
         //19. Click 'Delete Account' button
-        //20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+        driver.findElement(By.xpath("//*[@class='fa fa-trash-o']")).click();
+        extentTest.info("Click 'Delete Account' button");
+
+        //    if there is a popup add, close ad
+        driver.get("https://automationexercise.com/delete_account#google_vignette");
+        action.sendKeys(Keys.ESCAPE).build().perform();
+        extentTest.info("PopUp add closed");
+                wait(2);
+
+        //  20. Verify that 'ACCOUNT DELETED!' is visible
+        WebElement deletedTex = driver.findElement(By.xpath("//*[text()='Account Deleted!']"));
+        Assert.assertTrue(deletedTex.isDisplayed());
+        extentTest.pass("Verify that 'ACCOUNT DELETED!' is visible");
 
 
-
+        //click continue
+        driver.findElement(By.xpath("//*[@class='btn btn-primary']")).click();
+        extentTest.info("click continue");
+        extentTest.info("Close page");
 
     }
 }

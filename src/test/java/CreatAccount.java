@@ -41,11 +41,14 @@ public class CreatAccount {
         //5. Verify 'New User Signup!' is visible
         WebElement newUserSignUp = driver.findElement(By.xpath("//h2[text()='New User Signup!']"));
         Assert.assertTrue(newUserSignUp.isDisplayed());
+
         //6. Enter name and email address
         driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Ali");
+
         driver.findElement(By.xpath("(//input[@type='email'])[2]")).sendKeys("a912@gmail.com");
         //7. Click 'Signup' button
         driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
+
         //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
         WebElement entAccInf = driver.findElement(By.xpath("//*[text()='Enter Account Information']"));
         Assert.assertTrue(entAccInf.isDisplayed());
